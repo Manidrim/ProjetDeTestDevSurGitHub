@@ -18,7 +18,9 @@ class Telepathy
     $array = [];
     foreach ($allCardInArray as $value) {
         $keyValue = explode(':', $value);
-        if ($value === 'YES')
+        if ($value === 'YES') {
+            
+        }
     }
     return [];
     }
