@@ -1,7 +1,8 @@
-hello: # test makefile
-	echo "hello"
+hello: 
+	# test makefile
+	ls -l
 
-phpunit: # lance les tests phpunit
+phpunit:
 	php ./vendor/bin/phpunit --verbose tests
 
 phpunitKata:

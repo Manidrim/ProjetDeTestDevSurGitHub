@@ -10,19 +10,46 @@ class Telepathy
 {
     function magicShow (string $a): int
     {
-    return 47;
+        $cleanString = $this->cleanString($a);
+        $arrayCut = $this->cut($cleanString);
+        $binary = $this->putInArrayKey($arrayCut);
+        return $this->calculateNumber($binary);
+    }
+
+    function calculateNumber($array): int
+    {
+        $result = 0;
+        foreach ($array as $key => $value) {
+            if ($value) {
+                /** 1 2 4 8 16 32 */
+                $result += match ($key) {
+                    1 => 1,
+                    2 => 2,
+                    3 => 4,
+                    4 => 8,
+                    5 => 16,
+                    6 => 32,
+                };
+            }
+        }
+        return $result;
     }
 
     function putInArrayKey(array $allCardInArray): array
     {
-    $array = [];
-    foreach ($allCardInArray as $value) {
-        $keyValue = explode(':', $value);
-        if ($value === 'YES') {
-            
+        $array = [];
+        foreach ($allCardInArray as $value) {
+            $keyValue = explode(':', $value);
+            $key = (int) $keyValue[0];
+            $valueCard = (string) $keyValue[1];
+            if ($valueCard === 'Yes') {
+                $array[$key] = true;
+            }
+            IF ($valueCard === 'No') {
+                $array[$key] = false;
+            }
         }
-    }
-    return [];
+        return $array;
     }
 
     function cut(string $allCards): array

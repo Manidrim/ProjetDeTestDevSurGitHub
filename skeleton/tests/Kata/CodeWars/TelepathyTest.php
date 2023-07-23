@@ -18,10 +18,24 @@ class TelepathyTest extends TestCase
         unset($this->telepathy);
     }
 
+    public function testCalculateBinary(): void
+    {
+        $array = [
+            1 => true,
+            2 => true,
+            3 => true,
+            4 => true,
+            5 => true,
+            6 => true,
+        ];
+
+        $this->assertEquals(63, $this->telepathy->calculateNumber($array));
+    }
+
     public function testPutInArrayKey(): void
     {
-        $arrayIn = ['1:YES', '2:No'];
-        $this->assertSame([1 => true, 2 > false], $this->telepathy->putInArrayKey($arrayIn));
+        $arrayIn = ['1:Yes', '2:No'];
+        $this->assertSame([1 => true, 2 => false], $this->telepathy->putInArrayKey($arrayIn));
     }
 
     public function testCleanArray()
